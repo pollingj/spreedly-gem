@@ -246,8 +246,23 @@ module Spreedly
         raise "Could not add fee to subscriber: result code #{result.code}."
       end
     end
-  
-    
+
+    def create_invoice(email, args)
+      args[:customer_id] = self.id
+      args[:email] = email
+      puts args.to_yaml
+      result = Spreedly.post("/invoices.xml", :body => Spreedly.to_xml_params(:invoice => args))
+
+      case result.code.to_s
+      when /2../
+      when '404'
+        raise "Not Found"
+      when '422'
+        raise "Unprocessable Entity - #{result.body}"
+      else
+        raise "Could not add invoice to subscriber: result code #{result.code}."
+      end
+    end
   end
  
 

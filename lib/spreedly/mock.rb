@@ -150,6 +150,12 @@ module Spreedly
       raise "Unprocessable Entity" unless active?
       nil
     end
+
+    def create_invoice(email, args)
+      raise "Unprocessable Entity" unless (args.keys & [:title, :description, :line_items]).size == 3
+      raise "Unprocessable Entity" unless active?
+      nil
+    end
   end
   
   class SubscriptionPlan < Resource

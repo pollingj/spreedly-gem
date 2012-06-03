@@ -294,6 +294,32 @@ class SpreedlyGemTest < Test::Unit::TestCase
         assert_match %r{Unprocessable Entity}, ex.message        
       end
     end
+
+    context "create invoice" do
+
+      setup do
+        @regular_plan = Spreedly::SubscriptionPlan.all.detect{|e| e.name == "Test Regular Plan"}
+        assert @regular_plan, "For this test to pass in REAL mode you must have a regular plan in your Spreedly test site with the name \"Test Regular Plan\". It must be an auto-recurring plan."
+      end
+      
+
+      should "be able to add a new invoice to a customer" do
+        sub = create_subscriber
+        sub.subscribe(@regular_plan.id)
+
+        line_item = Hash.new
+        line_item[:amount] = 5
+        line_item[:description] = "New Users"
+        line_item[:meta_data] = "users: 5"
+
+        line_items = Hash.new
+        line_items[:line_item] = Array.new 
+        line_items[:line_item] << {:amount => 5, :description => 'New Users', :meta_data => 'users: 5' }
+        line_items[:line_item] << {:amount => 2, :description => 'New Users', :meta_data => 'users: 2' }
+
+        puts sub.create_invoice('john@theled.co.uk', :title => 'New Users', :description => 'Charge for new users', :auto_renew => true, :duration_quantity => 1, :duration_units => 'months', :line_items => line_items)
+      end
+    end
     
     should "throw an error if stopping auto renew on a non-existent subscriber" do
       sub = Spreedly::Subscriber.new('customer_id' => 'bogus')
