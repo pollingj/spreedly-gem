@@ -1,3 +1,3 @@
 module Spreedly
-  VERSION = "0.0.1"
+  VERSION = "1.3.5"
 end
