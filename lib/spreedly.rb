@@ -1,5 +1,6 @@
 require 'spreedly/common'
 require 'httparty'
+require "./version"
 
 raise "Mock Spreedly already required!" if defined?(Spreedly::MOCK)
 
