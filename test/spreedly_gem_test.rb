@@ -312,12 +312,17 @@ class SpreedlyGemTest < Test::Unit::TestCase
         line_item[:description] = "New Users"
         line_item[:meta_data] = "users: 5"
 
-        line_items = Hash.new
-        line_items[:line_item] = Array.new 
-        line_items[:line_item] << {:amount => 5, :description => 'New Users', :meta_data => 'users: 5' }
-        line_items[:line_item] << {:amount => 2, :description => 'New Users', :meta_data => 'users: 2' }
+        line_item = Hash.new
+        line_item[:line_item] = {:amount => 25, :description => 'New Users', :metadata => 'users: 5' }
+        line_item_2 = Hash.new
+        line_item_2 [:line_item] = {:amount => 10, :description => 'New Users', :metadata => 'users: 2' }
 
-        puts sub.create_invoice('john@theled.co.uk', :title => 'New Users', :description => 'Charge for new users', :auto_renew => true, :duration_quantity => 1, :duration_units => 'months', :line_items => line_items)
+
+        line_items = Array.new
+        line_items << line_item
+        line_items << line_item_2
+
+        sub.create_invoice('john@theled.co.uk', :title => 'New Users', :description => 'Charge for new users', :auto_renew => true, :duration_quantity => 1, :duration_units => 'months', :line_items => line_items, :return_url => '/')
       end
     end
     

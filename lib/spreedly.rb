@@ -54,6 +54,10 @@ module Spreedly
       result = "<#{tag}>"
       if value.is_a?(Hash)
         result << to_xml_params(value)
+      elsif value.is_a?(Array)
+        value.each do |val|
+          result << to_xml_params(val)
+        end
       else
         result << value.to_s
       end
@@ -250,9 +254,11 @@ module Spreedly
     def create_invoice(email, args)
       args[:customer_id] = self.id
       args[:email] = email
-      puts args.to_yaml
+      puts Spreedly.to_xml_params(:invoice => args)
       result = Spreedly.post("/invoices.xml", :body => Spreedly.to_xml_params(:invoice => args))
 
+      puts result
+      puts result.code.to_s
       case result.code.to_s
       when /2../
       when '404'

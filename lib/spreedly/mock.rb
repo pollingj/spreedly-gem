@@ -4,6 +4,25 @@ raise "Real Spreedly already required!" if defined?(Spreedly::REAL)
 
 module Spreedly
   MOCK = "mock"
+
+  def self.to_xml_params(hash) # :nodoc:
+    hash.collect do |key, value|
+      tag = key.to_s.tr('_', '-')
+      result = "<#{tag}>"
+      if value.is_a?(Hash)
+        result << to_xml_params(value)
+      elsif value.is_a?(Array)
+        value.each do |val|
+          result << to_xml_params(val)
+        end
+      else
+        result << value.to_s
+      end
+      result << "</#{tag}>"
+      result
+    end.join('')
+  end
+
   
   def self.configure(name, token)
     @site_name = name
