@@ -255,13 +255,11 @@ module Spreedly
     def create_invoice(email, args)
       args[:customer_id] = self.id
       args[:email] = email
-      puts Spreedly.to_xml_params(:invoice => args)
       result = Spreedly.post("/invoices.xml", :body => Spreedly.to_xml_params(:invoice => args))
 
-      puts result
-      puts result.code.to_s
       case result.code.to_s
       when /2../
+        return true
       when '404'
         raise "Not Found"
       when '422'

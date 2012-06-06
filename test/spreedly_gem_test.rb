@@ -308,11 +308,6 @@ class SpreedlyGemTest < Test::Unit::TestCase
         sub.subscribe(@regular_plan.id)
 
         line_item = Hash.new
-        line_item[:amount] = 5
-        line_item[:description] = "New Users"
-        line_item[:meta_data] = "users: 5"
-
-        line_item = Hash.new
         line_item[:line_item] = {:amount => 25, :description => 'New Users', :metadata => 'users: 5' }
         line_item_2 = Hash.new
         line_item_2 [:line_item] = {:amount => 10, :description => 'New Users', :metadata => 'users: 2' }
