@@ -282,6 +282,10 @@ module Spreedly
       all.detect{|e| e.id.to_s == id.to_s}
     end
     
+    def self.find_by_name(name)
+      all.detect{|e| e.name == name}
+    end
+    
     # Convenience method for determining if this plan is a free trial plan or not.
     def trial?
       (plan_type == 'free_trial')

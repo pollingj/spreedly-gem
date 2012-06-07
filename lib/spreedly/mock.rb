@@ -198,6 +198,11 @@ module Spreedly
       plans[id.to_i]
     end
     
+    def self.find_by_name(name)
+      all.detect{|e| e.name == name}
+    end
+
+    
     def self.plans
       @plans ||= {
         1 => new(:id => 1, :name => 'Default mock plan', :duration_quantity => 1, :duration_units => 'days'),
