@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "spreedly"
   gem.require_paths = ["lib"]
   gem.version       = Spreedly::VERSION
+
+  s.add_dependency "httparty"
 end
