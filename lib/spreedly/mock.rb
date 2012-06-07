@@ -71,7 +71,9 @@ module Spreedly
       :feature_level => proc{""},
       :on_trial => proc{false},
       :recurring => proc{false},
-      :eligible_for_free_trial => proc{false}
+      :eligible_for_free_trial => proc{false},
+      :ready_to_renew => proc{false},
+      :ready_to_renew_since => proc{nil}
     }
 
     def self.wipe! # :nodoc: all
@@ -162,6 +164,11 @@ module Spreedly
       @attributes[:recurring] = true
       plan = SubscriptionPlan.find(plan_id)
       comp(plan.duration_quantity, plan.duration_units, plan.feature_level)
+    end
+    
+    def ready_to_renew
+      @attributes[:ready_to_renew] = true
+      @attributes[:ready_to_renew_since] = Date.today
     end
     
     def add_fee(args)
