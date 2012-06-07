@@ -166,7 +166,7 @@ module Spreedly
       comp(plan.duration_quantity, plan.duration_units, plan.feature_level)
     end
     
-    def ready_to_renew
+    def setup_ready_to_renew
       @attributes[:ready_to_renew] = true
       @attributes[:ready_to_renew_since] = Date.today
     end
