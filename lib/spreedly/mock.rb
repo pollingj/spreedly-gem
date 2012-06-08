@@ -110,7 +110,7 @@ module Spreedly
     end
     
     def self.get_subscriber_link(token)
-      "#{base_uri}/subscriber_accounts/#{token}"
+      "https://spreedly.com/api/v4/#{site_name}/subscriber_accounts/#{token}"
     end
     
     def initialize(params={})

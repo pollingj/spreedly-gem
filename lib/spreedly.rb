@@ -142,7 +142,7 @@ module Spreedly
     end
     
     def self.get_subscriber_link(token)
-      "#{base_uri}/subscriber_accounts/#{token}"
+      "https://spreedly.com/api/v4/#{site_name}/subscriber_accounts/#{token}"
     end
     
     # Spreedly calls your id for the user the "customer id". This
