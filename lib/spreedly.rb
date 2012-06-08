@@ -287,7 +287,7 @@ module Spreedly
     end
     
     def pay_with_on_file(token)
-      result = Spreedly.put("/invoices/#{token}/pay.xml", :body => Spreedly.to_xml_params(:payment => { :account_type => 'on-file' })
+      result = Spreedly.put("/invoices/#{token}/pay.xml", :body => Spreedly.to_xml_params(:payment => { :account_type => 'on-file' }))
       
       case result.code.to_s
       when /2../
