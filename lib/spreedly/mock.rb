@@ -182,6 +182,10 @@ module Spreedly
       raise "Unprocessable Entity" unless active?
       nil
     end
+    
+    def change_subscription_plan(plan_id)
+      nil
+    end
   end
   
   class SubscriptionPlan < Resource

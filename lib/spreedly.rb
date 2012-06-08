@@ -268,6 +268,19 @@ module Spreedly
         raise "Could not add invoice to subscriber: result code #{result.code}."
       end
     end
+    
+    def change_subscription_plan(plan_id)
+      result = Spreedly.post("/subscribers/#{id}/change_subscription_plan.xml", :body => Spreedly_to_xml_params(:subscription_plan => plan_id))
+      
+      case result.code.to_s
+      when /2../
+        return true
+      when '404'
+        raise "Not Found"
+      else
+        raise "Could not change subscription plan: result code #{result.code}."
+      end
+    end
   end
  
 
