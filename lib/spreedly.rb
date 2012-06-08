@@ -281,6 +281,10 @@ module Spreedly
         raise "Could not change subscription plan: result code #{result.code}."
       end
     end
+    
+    def get_subscriber_link(token)
+      "#{base_uri}/subscriber_accounts/#{token}"
+    end
   end
  
 

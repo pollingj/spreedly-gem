@@ -186,6 +186,10 @@ module Spreedly
     def change_subscription_plan(plan_id)
       nil
     end
+    
+    def get_subscriber_link(token)
+      "#{base_uri}/subscriber_accounts/#{token}"
+    end
   end
   
   class SubscriptionPlan < Resource
