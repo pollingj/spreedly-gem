@@ -141,6 +141,10 @@ module Spreedly
       Spreedly.get('/subscribers.xml')['subscribers'].collect{|data| new(data)}
     end
     
+    def self.get_subscriber_link(token)
+      "#{base_uri}/subscriber_accounts/#{token}"
+    end
+    
     # Spreedly calls your id for the user the "customer id". This
     # gives you a handy alias so you can just call it "id".
     def id
@@ -281,10 +285,7 @@ module Spreedly
         raise "Could not change subscription plan: result code #{result.code}."
       end
     end
-    
-    def get_subscriber_link(token)
-      "#{base_uri}/subscriber_accounts/#{token}"
-    end
+
   end
  
 

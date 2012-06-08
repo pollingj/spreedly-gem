@@ -109,6 +109,10 @@ module Spreedly
       @subscribers.values
     end
     
+    def self.get_subscriber_link(token)
+      "#{base_uri}/subscriber_accounts/#{token}"
+    end
+    
     def initialize(params={})
       super
       if !id || id == ''
@@ -187,9 +191,6 @@ module Spreedly
       nil
     end
     
-    def get_subscriber_link(token)
-      "#{base_uri}/subscriber_accounts/#{token}"
-    end
   end
   
   class SubscriptionPlan < Resource
