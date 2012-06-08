@@ -16,4 +16,8 @@ Gem::Specification.new do |gem|
   gem.version       = Spreedly::VERSION
 
   gem.add_dependency "httparty"
+  gem.add_dependency "rake"
+  gem.add_dependency "hoe"
+  gem.add_dependency "shoulda"
+  gem.add_dependency "mechanize"
 end

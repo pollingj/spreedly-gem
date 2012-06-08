@@ -321,6 +321,21 @@ class SpreedlyGemTest < Test::Unit::TestCase
       end
     end
     
+    context "change subscription plan" do
+      setup do
+        @free_plan = Spreedly::SubscriptionPlan.all.detect{|e| e.name == "Test Free Trial Plan"}
+        @regular_plan = Spreedly::SubscriptionPlan.all.detect{|e| e.name == "Test Regular Plan"}
+        assert @regular_plan, "For this test to pass in REAL mode you must have a regular plan in your Spreedly test site with the name \"Test Regular Plan\". It must be an auto-recurring plan."
+      end
+      
+      should "be able to change to the regular plan" do
+        sub = create_subscriber
+        sub.subscribe(@free_plan.id)
+        
+        sub.change_subscription_plan(@regular_plan.id)
+      end
+    end
+    
     should "throw an error if stopping auto renew on a non-existent subscriber" do
       sub = Spreedly::Subscriber.new('customer_id' => 'bogus')
       ex = assert_raise(RuntimeError){sub.stop_auto_renew}

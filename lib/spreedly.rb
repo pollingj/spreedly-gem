@@ -274,8 +274,8 @@ module Spreedly
     end
     
     def change_subscription_plan(plan_id)
-      result = Spreedly.post("/subscribers/#{id}/change_subscription_plan.xml", :body => Spreedly.to_xml_params(:subscription_plan => plan_id))
-      
+      result = Spreedly.post("/subscribers/#{id}/change_subscription_plan.xml", :body => Spreedly.to_xml_params(:subscription_plan => {:id => plan_id}))
+
       case result.code.to_s
       when /2../
         return true
