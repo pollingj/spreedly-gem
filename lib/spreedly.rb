@@ -263,7 +263,7 @@ module Spreedly
 
       case result.code.to_s
       when /2../
-        return result.
+        return result['invoice']['token']
       when '404'
         raise "Not Found"
       when '422'
