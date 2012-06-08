@@ -263,7 +263,7 @@ module Spreedly
 
       case result.code.to_s
       when /2../
-        return true
+        return result.
       when '404'
         raise "Not Found"
       when '422'
@@ -285,6 +285,20 @@ module Spreedly
         raise "Could not change subscription plan: result code #{result.code}."
       end
     end
+    
+    def pay_with_on_file(token)
+      result = Spreedly.put("/invoices/#{token}/pay.xml", :body => Spreedly.to_xml_params(:payment => { :account_type => 'on-file' })
+      
+      case result.code.to_s
+      when /2../
+        return true
+      when '404'
+        raise "Not Found"
+      else
+        raise "Could not take payment"
+      end
+    end
+    
 
   end
  

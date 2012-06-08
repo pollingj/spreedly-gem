@@ -191,6 +191,10 @@ module Spreedly
       nil
     end
     
+    def pay_with_on_file(token)
+      proc{(rand * 1000).round}
+    end
+    
   end
   
   class SubscriptionPlan < Resource
